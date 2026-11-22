@@ -21,3 +21,23 @@ Run the tests:
 - **always_cooperate** – always plays "C".
 - **always_defect** – always plays "D".
 - **tit_for_tat** – plays "C" in the first round, then copies the opponent's last move.
+
+- ## Bonus: Tournament
+
+`play_tournament.py` runs a round-robin tournament: every pair of strategies plays each other (no self-play).
+
+play_tournament(strategies, games_per_pair, rounds_per_game, game)
+
+- strategies: list of strategy functions
+- games_per_pair: how many games each pair plays
+- rounds_per_game: rounds in each game
+- game: the payoff rules (game_rules)
+
+Returns a dictionary with the total score of each strategy.
+
+### Example
+results = play_tournament([always_cooperate, always_defect, tit_for_tat], 1, 10, game_rules)
+# {'always_cooperate': 30, 'always_defect': 64, 'tit_for_tat': 39}
+
+All strategies are deterministic, so results are reproducible.
+always_defect wins the tournament because it exploits always_cooperate.
